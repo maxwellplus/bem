@@ -5,8 +5,7 @@ const expand = (toExpand: string, prefix: string): string =>
     ? toExpand.replace("&", prefix)
     : `${prefix}${toExpand}`;
 
-export default (name: string): any | (string => string) => {
-  return (config: any | string) => {
+const parseConfig = (config: string | {[string]: bool} | Array<string>) : string => {
     if (typeof config === "string" || config instanceof String) {
       return expand(config, name);
     }
@@ -18,5 +17,10 @@ export default (name: string): any | (string => string) => {
         return config[item] ? [...items, expand(item, name)] : items;
       }, [])
       .join(" ");
+}
+
+export default (name: string): any | (string => string) => {
+  return (...config: string | { [string] : bool } | Array<string>) => {
+    return arguments.length > 1 ? arguments.map(arg => parseConfig(arg)).join(' ') : parseConfig(config);
   };
 };

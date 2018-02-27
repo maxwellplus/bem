@@ -4,11 +4,13 @@
   "description": "A small helper function for managing BEM classes.",
   "main": "lib/index.js",
   "files": [
-    "lib"
+    "lib",
+    "README.md",
+    "LICENSE.md"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublish": "npm run babel-prepublish && npm run flow-prepublish",
+    "prepare": "npm run babel-prepublish && npm run flow-prepublish",
     "babel-prepublish": "babel src/ -d lib",
     "flow-prepublish": "flow-copy-source src lib",
     "lint": "eslint src"

@@ -1,6 +1,6 @@
 {
   "name": "@maxwellmri/bem",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A small helper function for managing BEM classes.",
   "main": "lib/index.js",
   "files": [

@@ -12,7 +12,7 @@
 ```javascript
 const b = bem("Block");
 b(["&__component"]) // returns Block__component
-b(["&__component", "&__modified"]) // returns Block__component Block--modifier
+ub(["&__component", "&--modified"]) // returns Block__component Block--modifier
 ```
 
 2. With an string
@@ -21,9 +21,16 @@ const b = bem("Block");
 b("&__component") // returns Block__component
 ```
 
-2. With an object (for conditional classes)
+3. With an object (for conditional classes)
 ```javascript
 const b = bem("Block");
 b({ "&__component": true, "&--disabled": false }) // returns Block__component
 b({ "&__component": true, "&--disabled": true }) // returns Block__component Block--disabled
+```
+
+4. With multiple arguments
+```javascript
+const b = bem("Block");
+b(["&", "&--disabled"], "random") // returns Block Block--disabled random
+b(["&", "&--disabled"], { "fizz": true, "buzz": false }) // returns Block Block--disabled fizz
 ```

@@ -3,9 +3,9 @@
 const expand = (toExpand: string, prefix: string): string =>
   toExpand.startsWith("&")
     ? toExpand.replace("&", prefix)
-    : `${prefix}${toExpand}`;
+    : toExpand;
 
-const parseConfig = (config: string | {[string]: bool} | Array<string>) : string => {
+const parseConfig = (config: string | {[string]: bool} | Array<string>, name: string) : string => {
     if (typeof config === "string" || config instanceof String) {
       return expand(config, name);
     }
@@ -21,6 +21,9 @@ const parseConfig = (config: string | {[string]: bool} | Array<string>) : string
 
 export default (name: string): any | (string => string) => {
   return (...config: string | { [string] : bool } | Array<string>) => {
-    return arguments.length > 1 ? arguments.map(arg => parseConfig(arg)).join(' ') : parseConfig(config);
+    if (config.length === 0) {
+      return name;
+    }
+    return config.length > 1 ? config.map(arg => parseConfig(arg, name)).join(' ') : parseConfig(config[0], name);
   };
 };

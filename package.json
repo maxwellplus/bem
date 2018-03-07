@@ -9,7 +9,7 @@
     "LICENSE.md"
   ],
   "scripts": {
-    "test": "jest",
+    "test": "jest src",
     "prepare": "npm run babel-prepublish && npm run flow-prepublish",
     "babel-prepublish": "babel src/ -d lib",
     "flow-prepublish": "flow-copy-source src lib",

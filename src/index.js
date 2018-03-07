@@ -20,7 +20,7 @@ const parseConfig = (config: string | {[string]: bool} | Array<string>, name: st
 }
 
 export default (name: string): any | (string => string) => {
-  return (...config: string | { [string] : bool } | Array<string>) => {
+  return (...config?: string | { [string] : bool } | Array<string>) => {
     if (config.length === 0) {
       return name;
     }

@@ -1,6 +1,6 @@
 import bem from "./"
 
-test('handles simple bem', () => {
+test('handles no arguments', () => {
   const b = bem("Test");
   expect(b()).toEqual("Test");
 });
@@ -26,4 +26,15 @@ test('handles object', () => {
 test('handles arrays', () => {
   const b = bem("Test");
   expect(b(["&", "random"], ["&--other"])).toEqual("Test random Test--other");
-})
+});
+
+test('handles various types', () => {
+  const b = bem("Test");
+  expect(b(["&", "random"], "&--other")).toEqual("Test random Test--other");
+});
+
+
+test('handles null', () => {
+  const b = bem("Test");
+  expect(b([null, "random"], ["&--other"])).toEqual("random Test--other");
+});

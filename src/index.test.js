@@ -37,4 +37,6 @@ test('handles various types', () => {
 test('handles null', () => {
   const b = bem("Test");
   expect(b([null, "random"], ["&--other"])).toEqual("random Test--other");
+  expect(b(null)).toEqual("");
+  expect(b({'test': null})).toEqual("");
 });

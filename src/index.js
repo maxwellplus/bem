@@ -2,12 +2,16 @@
 
 type Config = string | {[string] : boolean} | Array<Config>;
 
-const expand = (toExpand: string, prefix: string): string =>
-  toExpand.startsWith("&")
+const expand = (toExpand: string, prefix: string): string => {
+  return toExpand.startsWith("&")
     ? toExpand.replace("&", prefix)
     : toExpand;
+}
 
 const parseConfig = (config: Config, name: string) : string => {
+  if (!config) {
+    return "";
+  }
   if (typeof config === "string" || config instanceof String) {
     return expand(config, name);
   }
